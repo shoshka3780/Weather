@@ -73,8 +73,8 @@ async function find(name) {
              console.log(data);
              if(city.value !== ""){
              for (const element of data) {
-                 list.insertAdjacentHTML("beforeend", `<li>${element.value}</li>`)
-                 let listArr = document.querySelectorAll(".hints.ul > li")
+                 list.insertAdjacentHTML("beforeend", `<li class="r">${element.value}</li>`)
+                 let listArr = document.querySelectorAll(".r")
                  listArr.addEventListener("click", function() {
                     console.log("ojdfihd");
                     
