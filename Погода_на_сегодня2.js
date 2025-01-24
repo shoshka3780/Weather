@@ -98,13 +98,13 @@ function  addTemp_c() {
                 feelslike.textContent = `Ощущается как: +${celsiusSign.format(feelslike_c)}`
             }
             if(temp_c < 0) {
-                temp.textContent = `${temp_c}` 
+                temp.textContent = `${celsiusSign.format(temp_c)}` 
             }
             if(feelslike_c < 0) {
                 feelslike.textContent = `Ощущается как: ${celsiusSign.format(feelslike_c)}`
             }
             if(temp_c === 0) {
-                temp.textContent = `${temp_c}` 
+                temp.textContent = `${celsiusSign.format(temp_c)}` 
             }
             if(feelslike_c === 0) {
                 feelslike.textContent = `Ощущается как: ${celsiusSign.format(temp_c)}`
