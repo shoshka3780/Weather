@@ -74,13 +74,14 @@ async function find(name) {
              if(city.value !== ""){
              for (const element of data) {
                  list.insertAdjacentHTML("beforeend", `<li>${element.value}</li>`)
+                 let listArr = document.querySelectorAll(".hints.ul > li")
+                 listArr.insertAdjacentHTML("click", function() {
+                    console.log("ojdfihd");
+                    
+                 })
                 }
             }
          })
-    document.querySelectorAll(".hints-ul > li").addEventListener("click", function() {
-        console.log("Срабоатло");
-        
-    })
      })
 threeDaysPage.addEventListener("click", function() {
     localStorage.removeItem("menu")
