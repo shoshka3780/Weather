@@ -32,7 +32,7 @@ let pressure = document.querySelector(".press")
 let hum = document.querySelector(".humidity")
 let weather = document.querySelector(".weather")
 let hints = document.querySelector(".hints-light")
-let listArr = document.querySelector(".hint-ul")
+let list = document.querySelector(".hint-ul")
 let current = document.querySelector(".current")
 let clickCount = 0
 let eng = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"]
@@ -66,18 +66,21 @@ async function find(name) {
     city.addEventListener("input", function() {
      let cityName = this.value
          find(cityName).then(data => {
-            listArr.innerHTML = ""
+            list.innerHTML = ""
             let inf = []
               inf = data.results
              console.log(inf);  
              console.log(data);
              if(city.value !== ""){
              for (const element of data) {
-                 listArr.insertAdjacentHTML("beforeend", `<li>${element.value}</li>`)
+                 list.insertAdjacentHTML("beforeend", `<li>${element.value}</li>`)
                 }
             }
          })
-
+    document.querySelectorAll(".hints-ul > li").addEventListener("click", function() {
+        console.log("Срабоатло");
+        
+    })
      })
 threeDaysPage.addEventListener("click", function() {
     localStorage.removeItem("menu")
