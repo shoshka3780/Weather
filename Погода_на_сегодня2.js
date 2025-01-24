@@ -75,7 +75,7 @@ async function find(name) {
              for (const element of data) {
                  list.insertAdjacentHTML("beforeend", `<li>${element.value}</li>`)
                  let listArr = document.querySelectorAll(".hints.ul > li")
-                 listArr.insertAdjacentHTML("click", function() {
+                 listArr.addEventListener("click", function() {
                     console.log("ojdfihd");
                     
                  })
