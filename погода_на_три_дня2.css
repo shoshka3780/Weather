@@ -1,0 +1,353 @@
+html {
+    min-height: 100%;
+   min-width: 100%; 
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+body{
+    min-height: 100%;
+   min-width: 100%; 
+    font-size: x-large;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
+}
+.light-theme {
+    background-color: white;
+    
+}
+.dark-theme {
+    background-color: rgb(30, 30, 30);
+}
+.head {
+    position: relative;
+    max-height: 76px;
+    display: flex;
+    margin: auto;
+
+}
+    .logo {
+        height: auto    ;
+        margin: auto;
+        display: flex;
+    }
+    header{
+        margin-top: -9px;
+        margin-left: -10px;
+        margin-right: -10px;
+        min-width: 100%;
+        color: azure;
+        display: flex;
+        background: black;
+        height: auto;   
+    }
+    .nav {
+        height: auto;
+        margin: auto;
+        display: inline-flex;
+        list-style: none;
+    }
+    .nav li{
+        margin-right: 20px;
+    }
+    .nav li a {
+        color: azure;
+        text-decoration: none; 
+    }
+    .nav li:hover a {
+        color:rgb(255, 218, 11) ;
+    }
+    .search {
+        position: relative;
+        display: flex;
+        margin: auto;
+    }
+    .search-open {
+        overflow-y: hidden auto;
+        z-index: 999;
+        display: none;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background: #0e0e0e;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    }
+    .search-form {
+        z-index: 9999;
+        margin: auto;
+        display: flex;
+    }
+    .button-search {
+        background-image: url("images/before.png");
+        padding: 20px;
+        background-size: 25px;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: auto;
+        z-index: 1100;
+    }
+    .button-search:hover {
+        background-image: url("images/after.png") !important;
+    }
+    .city { 
+        background-color: white; 
+        box-sizing: border-box;  
+        display: none;
+        margin: auto;
+        position: absolute;
+       bottom: 3px;
+        width: 0;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        border-bottom: 1px solid rgb(87, 87, 87);
+    }
+    .hints-light, .hints-dark {
+        padding-top: 10px;
+       position: absolute;
+       top: 40px;
+       border-radius: 5px;
+       width: 341px;
+       display: none;
+    }
+    .hints-dark p {
+        margin: auto;
+        font-size: large;
+        padding-left: 10px;
+    }
+    .hint-ul li{
+        display: block;
+    }
+    .hints-light p {
+        margin: auto;
+        font-size: large;
+        padding-left: 10px;
+        color: black;
+    }
+    .hints-light {
+        background-color: white;
+    }
+    .hints-dark {
+        border: 1px solid rgb(87, 87, 87);
+        background-color: rgb(30, 30, 30);
+    }
+    .hints-light ul {
+        background-color: white;
+        border-top: 1px solid rgb(87, 87, 87);
+        padding: 0;
+        list-style-type: none;
+        width: 341px;
+    }
+    .hints-dark ul {
+        background-color: rgb(30, 30, 30);
+        border-top: 1px solid rgb(87, 87, 87);
+        padding: 0;
+        list-style-type: none;
+        width: 341px;
+    }
+    .hints-light li {
+        padding: 10px;
+        background-color: white;
+        font-size: large;
+        color: black;
+        border: none;
+        position: relative;
+       border-bottom: 1px solid rgb(87, 87, 87);
+    }
+    .hints-dark li {
+        padding: 10px;
+        background-color: rgb(30, 30, 30);
+        font-size: large;
+        color: azure;
+        border: none;
+        position: relative;
+       border-bottom: 1px solid rgb(87, 87, 87);
+    }
+    .hints-light li:hover {
+        background-color: rgb(135, 135, 135);
+    }
+    .hints-dark li:hover {
+        background-color: rgb(135, 135, 135);
+    }
+    .hints-dark p:hover {
+        color: rgb(255, 218, 11);
+    }
+    .hints-light p:hover {
+        color: rgb(255, 218, 11);
+    }
+    .buttonMenu {
+        display: flex;
+        width: 25px;
+        margin: auto;
+        margin-left: 10px;
+        padding: 20px;
+        border: none;
+        background-color: black;
+        background-image: url("images/шестеренкаbef.png");
+        background-position: center;
+        background-size: 30px;
+        background-repeat: no-repeat;
+    }
+    .buttonMenu:hover {
+        background-image: url("images/шестеренкаaft.png");
+    }
+    .menu-light, .menu-dark {
+        z-index: 10;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ;
+        margin-top: auto;
+        display: none;
+        position: relative;
+        float: right;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 480px;
+        border: 1px solid rgb(87, 87, 87);
+        border-top: none;
+      
+    }
+    .menu-light {
+        color: rgb(87, 87, 87);
+        background-color: white;
+    }
+    .menu-light select{
+        color: rgb(87, 87, 87);
+        background-color: white;
+    }
+    .menu-light button {
+        background-image: url("images/Отменаlight.png");
+        background-color: white;
+    }
+    .menu-dark {
+        color: azure;
+        background-color: rgb(30, 30, 30);
+    }
+    .menu-dark button {
+        background-image: url("images/Отменаdark.png");
+        background-color: rgb(30, 30, 30);
+    }
+    .menu-dark select{
+        color: azure;
+        background-color: rgb(30, 30, 30);
+    }
+    .heading-top {
+        font-size: xx-large;
+    }
+    .delete{
+        margin: auto;
+        padding: 20px;
+        border: none;
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30px;
+    }
+    .topic, .degree, .wind, .pressure {
+        margin: auto;
+        display: flex;
+    }
+    .topic, .degree, .wind {
+
+        border-bottom: 1px solid  rgb(87, 87, 87);;
+        margin-top: 20px;
+    }
+    .topic-select, .degree-select, .speed-select, .pressure-select {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ;
+        font-size: x-large;
+        border: none;
+        outline: none;
+        margin-left: auto;
+    }
+    .top {
+        width: 480px;
+        display: flex;
+        border-bottom: 1px solid rgb(87, 87, 87); 
+    }
+    .content {
+        display: block;
+        max-width: 1925px;
+        position: relative;
+        margin: auto;
+       
+    }
+   .container-menu {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
+.head-main {
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+}
+.container1{
+    margin-top: 40px;
+    border-radius: 5px;
+    height: auto;
+    
+}
+.date {
+    display: flex;
+}
+.month-day {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: smaller;
+}
+.number {
+    margin-right: 15px;
+}
+.month {
+    margin-bottom: 0%;
+}
+.day{
+    margin-top: 0%;
+}
+.morning1, .evening1, .night1, .day-time1, .morning2, .evening2, .night2, .day-time2, .morning3, .evening3, .night3, .day-time3 {
+    display: flex;
+    width: 1000px;
+    min-width: 1000px;
+    position: relative;
+    bottom: 40px;
+    justify-content: start;    
+}
+.morning1, .night1, .morning2, .night2, .morning3, .night3 {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+.day-time1, .day-time2, .day-time3 {
+    border-bottom: 2px solid black;  
+}
+.temp-main, .wind-main, .pressure-main, .hum-main {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 5px;
+    margin: 0;
+    margin-left: 50px;
+}
+.temp-main, .wind-main {
+    min-width: 110px;
+}
+.pressure-main {
+    min-width: 180px;
+}
+.hum-main {
+    min-width: 80px;
+}
+.icon {
+     align-items: center;
+}
