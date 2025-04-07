@@ -466,6 +466,7 @@ searchForm.addEventListener("submit", function(event) {
 })
 searchOpen.addEventListener("click", function() {
     buttonSearch.style.backgroundImage = `url("images/before.png")`
+    list.innerHTML = ""
    hideForm()
 })
 
