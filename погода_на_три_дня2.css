@@ -188,13 +188,13 @@ body{
         padding: 20px;
         border: none;
         background-color: black;
-        background-image: url("images/шестеренкаbef.png");
+        background-image: url("images/шестеренкаBef.png");
         background-position: center;
         background-size: 30px;
         background-repeat: no-repeat;
     }
     .buttonMenu:hover {
-        background-image: url("images/шестеренкаaft.png");
+        background-image: url("images/шестеренкаAft.png");
     }
     .menu-light, .menu-dark {
         z-index: 10;
@@ -219,7 +219,7 @@ body{
         background-color: white;
     }
     .menu-light button {
-        background-image: url("images/Отменаlight.png");
+        background-image: url("images/ОтменаLight.png");
         background-color: white;
     }
     .menu-dark {
@@ -227,7 +227,7 @@ body{
         background-color: rgb(30, 30, 30);
     }
     .menu-dark button {
-        background-image: url("images/Отменаdark.png");
+        background-image: url("images/ОтменаDark.png");
         background-color: rgb(30, 30, 30);
     }
     .menu-dark select{
