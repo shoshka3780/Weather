@@ -192,13 +192,13 @@ body{
         padding: 20px;
         border: none;
         background-color: black;
-        background-image: url("images/шестеренкаbef.png") !important;
+        background-image: url("images/шестеренкаBef.png") !important;
         background-position: center;
         background-size: 30px;
         background-repeat: no-repeat;
     }
     .buttonMenu:hover {
-        background-image: url("images/шестеренкаaft.png") !important;
+        background-image: url("images/шестеренкаAft.png") !important;
     }
     .menu-light, .menu-dark {
         z-index: 10;
