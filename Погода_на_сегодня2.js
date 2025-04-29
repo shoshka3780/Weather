@@ -45,7 +45,7 @@ const fahrenheitSign = new Intl.NumberFormat('en-US', {
     unit: 'fahrenheit'
 })
 async function fetchWeather() {
-    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b76243c0b1d64157974120632241107&q=${localStorage.getItem("lat")},${localStorage.getItem("lon")}&lang=ru&days=5&aqi=yes`)
+    const response = await fetch(`https://nameless-sky-3cb5.ivanuskinartem59.workers.dev/forecast.json?&q=${localStorage.getItem("lat")} ${localStorage.getItem("lon")}&lang=ru&days=5&aqi=yes`)
     const forecast = await response.json()
     return forecast
     }
