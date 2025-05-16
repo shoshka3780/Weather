@@ -319,7 +319,9 @@ body{
 .day{
     margin-top: 0%;
 }
-.morning1, .evening1, .night1, .day-time1, .morning2, .evening2, .night2, .day-time2, .morning3, .evening3, .night3, .day-time3 {
+.morning1, .evening1, .night1, .day-time1, .morning2, .evening2, .night2, .day-time2, .morning3, .evening3, .night3, .day-time3,
+.morning4, .evening4, .night4, .day-time4, .morning5, .evening5, .night5, .day-time5, .morning6, .evening6, .night6, .day-time6,
+.morning7, .evening7, .night7, .day-time7 {
     display: flex;
     width: 1000px;
     min-width: 1000px;
@@ -327,11 +329,11 @@ body{
     bottom: 40px;
     justify-content: start;    
 }
-.morning1, .night1, .morning2, .night2, .morning3, .night3 {
+.morning1, .night1, .morning2, .night2, .morning3, .night3, .morning4, .night4, .morning5, .night5, .morning6, .night6, .morning7, .night7   {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
-.day-time1, .day-time2, .day-time3 {
+.day-time1, .day-time2, .day-time3,.day-time4, .day-time5, .day-time6,.day-time7 {
     border-bottom: 2px solid black;  
 }
 .temp-main, .wind-main, .pressure-main, .hum-main {
@@ -354,58 +356,4 @@ body{
 .icon {
      align-items: center;
 }
- .loading-screen-light {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-.loading-screen-dark {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(30, 30, 30);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
 
-.loader-light {
-    border: 5px solid #f4f4f4;;
-    border-top: 5px solid rgb(255, 218, 11);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 15px;
-}
-.loader-dark {
-    border: 5px solid rgb(87, 87, 87);
-    border-top: 5px solid rgb(255, 218, 11);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 15px;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.l-light {
-    color: black;
-}
-.l-dark {
-    color: azure;
-} 
