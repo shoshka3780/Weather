@@ -515,7 +515,7 @@ async function fetchWeather() {
         }
         if(localStorage.getItem("pressure") === "mb") {
             pressStr = "pressure_mb"
-            sign = "д.рт.ст"
+            sign = "мбар"
         }
      if(dayTime === 0) {
                 for (let i = 6 + day*24; i < 13 + day*24; i++) {
