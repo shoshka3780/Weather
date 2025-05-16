@@ -377,17 +377,13 @@ body{
     margin: auto;
    }
    .air {
+    flex-wrap: wrap;
+  gap: 20px;
     position: relative;
     top: 40px;
     left: 40px;
    }
-   .chart {
-    height: 400px;
-    position: relative;
-    bottom: 40px;
-    display: flex;
-    justify-content: center;
-   }
+ 
    .qualityText {
     display: flex;
     position: absolute;
@@ -398,15 +394,11 @@ body{
    .text {
     margin-right: 10px;
    }
-   .cnavas-air {
-    display: flex;
-    height: 250px;
-    width: 1000px;
-   }
+   
    .chartTemp {
     display: flex;
     justify-content: center;
-   
+    margin-right: 7px;
    }
    .warning-container {
     display: flex;
@@ -425,14 +417,16 @@ body{
     border-radius: 20px;
    }
    .pod-light {
-    margin-top: 40px;
-    margin-left: 520px;
+    display: none;
+   margin-top: 33px;
+    margin-left: 500px;
     text-decoration: none;
     color: black;
    }
    .pod-dark {
-    margin-top: 55px;
-    margin-left: 520px;
+    display: none;
+    margin-top: 33px;
+     margin-left: 500px;
     color: azure;
     text-decoration: none;
    }
@@ -441,4 +435,87 @@ body{
    }
 .pod-dark:hover {
     color: rgb(255, 218, 11);
+   }
+   .air {
+    height:200px !important;
+    width: 360px !important;
+    
+   }
+   #a-l {
+     font-size: larger;
+    position: absolute;
+    margin-right: 820px;
+    margin-top: 140px;
+   }
+    #b-l {
+        font-size: larger;
+    position: absolute;
+    margin-right: 220px;
+    margin-top: 140px;
+   }
+   #c-l {
+   font-size: larger;
+    position: absolute;
+    margin-left: 380px;
+    margin-top: 140px;
+   }
+#d-l {
+   font-size: larger;
+    position: absolute;
+    margin-left: 980px;
+   margin-top: 140px;
+   }
+   #min-a {
+    position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+      margin-right: 970px;
+   }
+   #max-a {
+     position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+     margin-right: 670px;
+   }
+    #min-b {
+    position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+      margin-right: 370px;
+   }
+   #max-b {
+     position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+     margin-right: 70px;
+   }
+#min-c {
+    position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+      margin-right: -230px;
+   }
+   #max-c {
+     position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+     margin-right: -530px;
+   }
+   #min-d {
+    position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+      margin-right: -830px;
+   }
+   #max-d {
+     position: absolute;
+    font-size: larger;
+     margin-top: 240px;
+     margin-right: -1130px;
+   }
+   .l {
+    color: black;
+   }
+   .d {
+    color: azure;
    }
