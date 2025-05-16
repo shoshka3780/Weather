@@ -38,6 +38,7 @@ let listArrRus= []
 let listArrOther = []
 let current = document.querySelector(".current")
 let clickCount = 0
+
 let pod = document.querySelector(".pod-light")
 const celsiusSign = new Intl.NumberFormat('en-US', {
     style: 'unit',
@@ -55,7 +56,7 @@ https://api.openweathermap.org/data/2.5/weather?lat=${localStorage.getItem("lat"
     return res
 }
 async function fetchWeatherTemp() {
-    const response = await fetch(`https://nameless-sky-3cb5.ivanuskinartem59.workers.dev/forecast.json?&q=${localStorage.getItem("lat")} ${localStorage.getItem("lon")}`)
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${localStorage.getItem("lat")}&longitude=${localStorage.getItem("lon")}&hourly=temperature_2m,precipitation&forecast_days=1`)
     const res = await response.json()
     return res
 }
@@ -64,15 +65,14 @@ async function fetchWeatherAqi() {
     const res = await response.json()
     return res
 }
-function findWorld(){}
-//${localStorage.getItem("lat")} ${localStorage.getItem("lon")}
-console.log(fetchWeather());
-console.log( findWorld("Сургут"))
+
 async function find(name) {
-    const response = await fetch(`https://api.geotree.ru/search.php?key=KLYDH7obgUh3&term=${name}&level=4&limit=5`)
+    const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${name}&count=10&language=ru&format=json`)
     const res = await response.json()
     return res
 }
+console.log(fetchWeather());
+
 current.addEventListener("click", function() {
     navigator.geolocation.getCurrentPosition(position => {
         localStorage.removeItem("inf")
@@ -99,22 +99,22 @@ let arrCityNotRussia = []
                 listArrRus[i].remove()
             }
             let inf = []
-            inf = data.results
-            console.log(data);
+            inf = data.result
+            console.log(data.results);
             
              if(city.value !== ""){
-             for (const element of data) {
+             for (const element of data.results) {
                 
-                 list.insertAdjacentHTML("beforeend", `<li class = "rus">${element.value}</li>`)     
+                 list.insertAdjacentHTML("beforeend", `<li class = "rus">${element.name} (${element.admin1})</li>`)     
                  }
                  listArrRus = document.querySelectorAll(".rus")
                  listArrRus.forEach((item,index) => { item.addEventListener("click", function() {
                      localStorage.removeItem("lat")
                      localStorage.removeItem("lon")
                      localStorage.removeItem("name")
-                     localStorage.setItem("name", data[index].name_display)
-                     localStorage.setItem("lat", data[index].geo_center.lat)
-                     localStorage.setItem("lon", data[index].geo_center.lon)
+                     localStorage.setItem("name", data.results[index].name)
+                     localStorage.setItem("lat", data.results[index].latitude)
+                     localStorage.setItem("lon", data.results[index].longitude)
                      h1City.textContent = localStorage.getItem("name")
                      fetchWeather()
                      location.reload()
@@ -126,34 +126,6 @@ let arrCityNotRussia = []
         for (let i = 0; i < listArrOther.length; i++) {
             listArrOther[i].remove()
         }
-    
-     findWorld(cityName).then(data => {
-        for (const element of data) {
-            if(element.country !== "RU" && element.local_names.ru !== undefined) {
-            list.insertAdjacentHTML("beforeend", `<li class = "other">${element.local_names.ru} (${element.state})${element.country}</li>`)
-            arrCityNotRussia.push({
-                name: `${element.local_names.ru} ${element.state} ${element.country}`,
-                lat: element.lat,
-                lon: element.lon
-            })  
-        }
-        console.log(arrCityNotRussia);
-          
-        }
-        listArrOther = document.querySelectorAll(".other")
-                 listArrOther.forEach((item,index) => { item.addEventListener("click", function() {
-                     localStorage.removeItem("lat")
-                     localStorage.removeItem("lon")
-                     localStorage.removeItem("name")
-                     localStorage.setItem("name", arrCityNotRussia[index].name)
-                     localStorage.setItem("lat", arrCityNotRussia[index].lat)
-                     localStorage.setItem("lon", arrCityNotRussia[index].lon)
-                     h1City.textContent = localStorage.getItem("name")
-                     fetchWeather()
-                     location.reload()
-                  })
-                })
-     })
          
      })  
 threeDaysPage.addEventListener("click", function() {
@@ -198,7 +170,7 @@ async function addTemp_f() {
 async function addWindKph() {
         fetchWeather().then(data => {
     let kph = Math.round(data.wind.speed)
-    wind.textContent = `${kph} м/с`
+    wind.textContent = `${kph} км/ч`
         })
         kphOption.setAttribute("selected",true)
     }
@@ -341,10 +313,17 @@ async function addIconAndColor() {
         }
     })
 }
+let fon = document.querySelectorAll(".l")
     function addDarkTheme() {
         localStorage.removeItem("theme")
         localStorage.setItem("theme", "dark")
         darkOption.setAttribute('selected', true);
+        for (let i = 0; i < fon.length; i++) {
+            fon[i].classList.remove("l")
+        fon[i].classList.add("d")
+            
+        }
+      
         body.classList.remove("light-theme")
         body.classList.add("dark-theme")
         menu.classList.remove("menu-light")
@@ -355,6 +334,12 @@ async function addIconAndColor() {
         pod.classList.add("pod-dark")
     }
     function addLightTheme() {
+        for (let i = 0; i < fon.length; i++) {
+           fon[i].classList.remove("d")
+        fon[i].classList.add("l")
+            
+        }
+       
         localStorage.removeItem("theme")
         localStorage.setItem("theme", "light")
         lightOption.setAttribute('selected', true);
@@ -614,21 +599,30 @@ del.onclick = function() {
     else if(aqi > standart[1]  && aqi > standart[2] || aqi <= standart[2]) {
         color = bad
     }
-    ctx.arc(x,y, 100, startFone,endFone) // начальная дуга
+
     ctx.lineWidth = 15
     ctx.strokeStyle = foneColor
-    ctx.stroke()
-        ctx.beginPath()
-        ctx.lineWidth = 15
-        ctx.strokeStyle = color
-        ctx.arc(x,y, 100, cornerStart, cornerEnd) // дуга показывающая результат
-        ctx.stroke()
-        ctx.closePath()
-    ctx.font = font
-    ctx.fillStyle = colorFont
-    ctx.fillText(`${designations[0]}`, x-60, 235) // число для начальной шклаы
-    ctx.fillText(`${designations[1]}`, x+40, 235) // число для конечной шклаы
-    ctx.fillText(`${text}`, x-30, y)
+const chart = new Chart(ctx, {  // Создание экземпляра круговой диаграммы (doughnut)
+    type: 'doughnut',  // Тип диаграммы - "пончик" (кольцевая)
+    data: {  // Данные для отображения
+        datasets: [{  // Массив наборов данных (здесь один набор)
+            data: [procent, 100 - procent],  // Данные: [текущее значение, оставшаяся часть]
+            backgroundColor: [color, foneColor],  // Цвета сегментов: [активный, фоновый]
+            borderWidth: 0  // Отключаем обводку сегментов
+        }]
+    },
+    options: {  // Настройки отображения
+        circumference: 260,  // Угол охвата (в градусах) - делает диаграмму частичной (не полный круг)
+        rotation: -130,  // Поворот диаграммы (начало отсчета) - чтобы "старт" был слева
+        cutout: '80%',  // Внутренний вырез (толщина кольца) - 80% от радиуса
+        aspectRatio: 1.9,  // Соотношение сторон (для правильного отображения полукруга)
+        plugins: {  // Плагины и их настройки
+            legend: { display: false },  // Скрыть легенду
+            tooltip: { enabled: false }  // Отключить всплывающие подсказки
+        },
+        animation: { animateScale: true }  // Анимация при загрузке (масштабирование)
+    }
+});
 })
  }
  function buildChart(theme, temp) {
@@ -641,8 +635,9 @@ del.onclick = function() {
     let arrTemp = []
     let arrTempSort = []
     let height =  0
- let set = new Set()
+
  let color = ""
+ let colorGrid
  if(temp === "C") {
     temperature = "temp_c"
  }
@@ -650,85 +645,89 @@ del.onclick = function() {
     temperature = "temp_f"
  }
  if(theme === "dark") {
-    color = "white"
+    color = "azure"
+    colorGrid = 'rgba(180, 169, 169, 0.46)'
     chartH1.style.color = color
  }
  if(theme === "light") {
     color = "black"
-    chartH1.style.color = color
+    chartH1.style.color = ""
  }
-
-ctx.beginPath()
-        for (let i = 0; i < 24; i++) {
-            arrTemp.push(Math.round(data.forecast.forecastday[0].hour[i][temperature]))
-            set.add(arrTemp[i])
-        }
-        console.log(arrTemp);
-        
-        arrTempSort = Array.from(set).sort((a,b) => a - b)
-        ctx.canvas.height = arrTempSort.length * 40 + 40
-        height = ctx.canvas.height
-        console.log(arrTempSort);
-        
-        let xForTemp = 0
-        let yForTemp = height - 40
-       ctx.font = `20px Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif`
-       ctx.fillStyle = color
-        for (let j = 0; j < 24; j++) {
-           if(arrTempSort[j] > 0) {
-            ctx.fillText(`+${arrTempSort[j]+ String.fromCharCode(176) + temp}`, xForTemp, yForTemp)
-            ctx.fill()
-            }
-             if(arrTempSort[j] === 0) {
-                 ctx.fillText(` ${arrTempSort[j]+ String.fromCharCode(176) + temp}`, xForTemp, yForTemp)
-             }
-             if(arrTempSort[j] < 0) {
-                 ctx.fillText(`${arrTempSort[j]+ String.fromCharCode(176) + temp}`, xForTemp, yForTemp)
-             }
-            yForTemp-=40
-            }
-    let xForHour = 60
-    let yForHour = height
-    for (let i = 0; i < 24; i++) {
-        if(i < 10) {
-            ctx.fillText(`0${i}:00`, xForHour, yForHour)
-        }
-        else if(i >= 10) {
-            ctx.fillText(`${i}:00`, xForHour, yForHour)
-        }
-        xForHour+=60
+ for (let i = 0; i < 24; i++) {
+    if(temperature === "temp_c") {
+        arrTemp.push(Math.round(data.hourly.temperature_2m[i]))
     }
-
-   let x =  80
-     let y = 0
-     let cordsX = []
-     let cordsY = []
-     ctx.strokeStyle = "rgb(255, 218, 11)"
-     ctx.fillStyle = "rgb(255, 218, 11)"
-    
-     for (let e = 0; e < 24; e++) {
-        y = height - arrTempSort.indexOf(arrTemp[e]) * 40 - 50
-        cordsX.push(x)
-        cordsY.push(y)
-        ctx.moveTo(x,y)
-        ctx.arc(x, y, 3,0, 2*Math.PI, false)
-      
-        x+=60
-    } // этот цикл расставляет точки на графике
-     ctx.lineWidth = 2
-     for (let i = 0; i < 23; i++) {
-        ctx.moveTo(cordsX[i], cordsY[i])
-        ctx.lineTo(cordsX[i+1], cordsY[i+1])
-    } // этот цикл проводит линии к этим точкам
-     ctx.stroke()
+    if(temperature === "temp_f") {
+        arrTemp.push(Math.round(data.hourly.temperature_2m[i] * 1.8) + 32)
+    }
+}       
+const temperatureData = {  // Объект с данными для графика
+  labels: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00',
+    '09:00','10:00','11:00','12:00','13:00','14:00','15:00',
+    '16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'], // Подписи оси X (часы суток)
+  datasets: [{  // Массив наборов данных (здесь один набор)
+    data: arrTemp,  // Массив значений температуры
+    pointRadius: 6,  // Размер точек на графике
+    borderColor: 'rgb(255, 218, 11)',  // Цвет линии графика
+    tension: 0.4  // Уровень сглаживания кривой
+  }]
+};
+const temperatureChart = new Chart(ctx, {  // Создание экземпляра графика
+  type: 'line',  // Тип графика - линейный
+  data: temperatureData,  // Передаем данные
+  options: {  // Настройки отображения
+    scales: {  // Настройки осей
+      x: {  // Ось X
+        grid: {  // Сетка
+          color: colorGrid  // Цвет линий сетки
+        },
+        ticks: {  // Подписи
+          color: color,  // Цвет текста
+          font: {  // Шрифт
+            size: 14,  // Размер шрифта
+            family: 'Arial',  // Название шрифта
+            weight: 'bold'  // Жирность
+          }
+        }
+      },
+      y: {  // Ось Y
+        grid: {  // Сетка
+          color: colorGrid  // Цвет линий сетки
+        },
+        ticks: {  // Подписи
+          color: color,  // Цвет текста
+          callback: function(value) {  // Форматирование значений
+            if(temperature === "temp_c") return value + ' °C';  // Добавляем °C для Цельсия
+            if(temperature === "temp_f") return value + ' °F';  // Добавляем °F для Фаренгейта
+          },
+          font: {  // Шрифт
+            size: 14,  // Размер шрифта
+            family: 'Arial',  // Название шрифта
+            weight: 'bold'  // Жирность
+          }
+        }
+      }
+    },
+plugins: {  // Плагины
+      tooltip: {  // Всплывающие подсказки
+        bodyFont: { size: 20 },  // Размер основного текста
+        titleFont: { size: 16 },  // Размер заголовка
+        displayColors: false  // Скрыть цветные индикаторы
+      },
+      legend: { display: false },  // Скрыть легенду
+      title: { display: true }  // Показать заголовок (без текста)
+    }
+  }
+});    
   })
   }
-
-console.log(fetchWeather());
-console.log(find("dhfjhf", "iejfuhd"));
-console.log(Math.round(-0,8));
-
 addTheme()
 addAllInf()
-}
+const ctx = document.getElementById('airQualityChart').getContext('2d');
 
+// Данные для графика (пример)
+
+
+// Создаем график
+
+}
