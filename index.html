@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Погода_на_сегодня3.css">
- 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="images\icn.ico" type="image/x-icon">
     <title>Погода на сегодня</title>
 </head>
 <body class="light-theme">
+    
     <div class="search-open">
     </div>
     <script src="Погода_на_сегодня2.js"></script>
@@ -22,7 +23,7 @@
         </div>
         <ul class="nav">
           <li><a class = "today" href="" style="color: rgb(255, 218, 11);">Прогноз на сегодня</a></li>
-          <li><a href="погода_на_три_дня1.html" class="three-day">Прогноз на 3 дня</a></li>
+          <li><a href="погода_на_три_дня1.html" class="three-day">Прогноз на 7 дней</a></li>
         </ul>
         <div class= "search">
            <div  class="button-search"></div>
@@ -116,32 +117,53 @@
        </div>
 <br>
 <h1 class="defra-h1" style="text-align: center; margin-top: 100px;"></h1>
-<div class="chart">
-    <div class="canvas-air">
-        <canvas id="1" class="air" height="250px" width="250px"></canvas>
-        <canvas id="2" class="air" height="250px" width="250px"></canvas>
-        <canvas id="3" class="air" height="250px" width="250px"></canvas>
-        <canvas id="4" class="air" height="250px" width="250px"></canvas>
+<div class="chart" style="display: flex; justify-content: center; margin-right: 60px;">
+    <div class="canvas-air" style="
+        display: flex;
+        justify-content: center;
+    ">
+        <!-- Графики в ряд -->
+        <canvas id="1" class="air" style="margin-right: -60px;" ></canvas>
+        <canvas id="2" class="air" style="margin-right: -60px;"></canvas>
+        
+        <canvas id="3" class="air" style="margin-right: -60px;"></canvas>
        
-        <div class="qualityText">
-        <p class="text"></p>
-        <p class="quality"></p>
-        <a href="" style="margin-top: 30px; margin-left: 520px;" class="pod-light">Подробнее</a>
+        <canvas id="4" class="air"></canvas>
+         <p id="a-l" class="l">pm2.5</p>
+         <p id="b-l" class="l">pm10</p>
+          <p id="c-l" class="l">O<sub>3</sub></sub></p> 
+         <p id="d-l" class="l">NO<sub>2</sub></sub></p> 
+        <p id="min-a" class="l">0</p>
+         <p id="max-a" class="l">60</p>
+         <p id="min-b" class="l">0</p>
+         <p id="max-b" class="l">100</p>
+         <p id="min-c" class="l">0</p>
+         <p id="max-c" class="l">200</p>
+         <p id="min-d" class="l">0</p>
+         <p id="max-d" class="l">95</p>
+        <!-- Текст и кнопка (растягиваем на всю ширину) -->
+        <div class="qualityText" style="
+            flex: 100%;  /* Занимает всю ширину */
+            margin-top: 440px;
+            margin-right: 700px;
+            
+        ">
+            <p class="text"></p>
+            <p class="quality"></p>
+            <a href="#" class="pod-light" >Подробнее</a>
         </div>
-       
     </div>
-    
 </div>
-<h1 class="chart-h1" style="text-align: center; bottom: 50px;"></h1>
+<h1 class="chart-h1" style="text-align: center; margin-top: 150px;"></h1>
 <div class="chartTemp">
-    <canvas id="canvasChart" class="chartf" height="800px" width="1500px">
+    <canvas id="canvasChart" class="chartf" height="200px" width="800px">
     </canvas>
 </div>
-
+ <canvas id="airQualityChart"></canvas>
 </main>
 <footer>
     <div class="foot">
-        <p style="color: rgb(160, 165, 169); font-size: medium;">© 2025 Прогноз погоды. Данные предоставлены WheatherAPI, OpenWeatherApi, GeoTreeApi</p>
+        <p style="color: rgb(160, 165, 169); font-size: medium;">© 2025 Прогноз погоды. Данные предоставлены WheatherAPI</p>
     </div>
    
 </footer>
